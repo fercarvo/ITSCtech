@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "test": "node ./bin/www",
-    "start": "PORT=3001 NODE_ENV=production node ./bin/www"
+    "start": "PORT=8765 NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "ejs": "^2.6.1",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "moment": "^2.24.0",

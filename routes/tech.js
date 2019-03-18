@@ -2,13 +2,16 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment')
 const { exec } = require('child_process');
-const { key } = require('./util/DB.js')
+const { key } = require('../util/DB.js')
 
 
 router.post('/restart_idempiere/:key', async function (req, res, next) {
 
+    if ( req.connection.remoteAddress !== '::1' )
+        return res.status(401).send('UnAuthorized address')
+
     if (req.params.key !== key)
-        return res.send('UnAuthorized')
+        return res.status(401).send('UnAuthorized')
 
     exec('service idempiere_Debian.sh restart', function (err, stdout, stderr) {
         if (err) {
@@ -23,8 +26,11 @@ router.post('/restart_idempiere/:key', async function (req, res, next) {
 
 router.post('/restart_postgresql/:key', async function (req, res, next) {
 
+    if ( req.connection.remoteAddress !== '::1' )
+        return res.status(401).send('UnAuthorized address')
+
     if (req.params.key !== key)
-        return res.send('UnAuthorized')
+        return res.status(401).send('UnAuthorized')
 
     exec('service postgresql restart', function (err, stdout, stderr) {
         if (err) {
