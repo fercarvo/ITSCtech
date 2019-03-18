@@ -16,7 +16,7 @@ router.post('/restart_idempiere/:key', async function (req, res, next) {
     exec('service idempiere_Debian.sh restart', function (err, stdout, stderr) {
         if (err) {
             console.error('Error reinicio', err);
-            res.send('Ok')
+            return res.send('Ok')
         }
 
         console.log('reinicio idempiere exitoso')
@@ -35,7 +35,7 @@ router.post('/restart_postgresql/:key', async function (req, res, next) {
     exec('service postgresql restart', function (err, stdout, stderr) {
         if (err) {
             console.error('Error reinicio base', err);
-            res.send('Ok')
+            return res.send('Ok')
         }
 
         console.log('reinicio base exitoso')
