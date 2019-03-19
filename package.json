@@ -3,17 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "node ./bin/www",
-    "start": "PORT=8765 NODE_ENV=production node ./bin/www"
+    "start": "node tech.js"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "ejs": "^2.6.1",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "moment": "^2.24.0",
-    "morgan": "~1.9.0",
-    "nodejs_idempierewebservice": "https://github.com/fercarvo/nodejs_idempierewebservice/tarball/master"
+    "socket.io-client": "^2.2.0"
   }
 }
