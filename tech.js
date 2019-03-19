@@ -41,4 +41,7 @@ hub.on('pavimento', async (req, response_cb) => {
 
 hub.on('connect', () => console.log(`This <-----> ${server} [${new Date().toLocaleString()}]`))
 hub.on('disconnect', () => console.log(`This <-   -> ${server} [${new Date().toLocaleString()}]`))
-hub.on('error', err => hub.close() )
+hub.on('error', err => {
+    console.error("Error grave", err)
+    hub.close()
+} )
