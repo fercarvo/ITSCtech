@@ -1,8 +1,35 @@
 var { exec } = require('child_process');
 var io  = require('socket.io-client')
 
-var { cliente_name, secret, server } = require('./util/DB.js')
+/** Nombre del cliente, no debe de existir */
+var cliente_name 	= undefined 
+/** key unica que debe ser la misma del servidor */
+var secret 		    = undefined 
+/** hrl del servidor */
+var server 	        = undefined
 
+for (var i = 2; i < process.argv.length; i++) {
+	let arg 		= process.argv[i].split('=')
+	let arg_name 	= arg[0] 
+    let arg_value 	= arg[1]
+
+	switch (arg_name.toUpperCase()) {
+		case 'NAME':
+            cliente_name = arg_value;
+			break;
+		case 'SECRET':
+            secret = arg_value;
+			break;
+		case 'SERVER':
+            server = arg_value;
+			break;
+		default:
+		  	console.error("Argumento desconocido " + arg);
+	}
+}
+
+if (!cliente_name || !secret || !server )
+    throw new Error(`NAME=${cliente_name} SECRET=${secret} SERVER=${server}`);
 
 var hub = io(server, {
     path: '/supertech', 
